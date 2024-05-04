@@ -7,14 +7,24 @@ function App() {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobs.jobs);
   const status = useSelector((state) => state.jobs.status);
+
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchJobs());
     }
-  }, [status, dispatch]);
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop < document.documentElement.offsetHeight - 1 ||
+        status === 'loading'
+      ) return;
+      dispatch(fetchJobs());
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [dispatch, status]);
 
   return (
-    <main className='app'>
+    <main>
       <div className='job-card-container'>
         {jobs.map((job) => (
           <JobCard key={job.jdUid} jobDetails={job} className='job-card' />
@@ -30,3 +40,7 @@ function App() {
 }
 
 export default App;
+
+
+
+
