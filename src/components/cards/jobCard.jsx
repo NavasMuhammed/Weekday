@@ -60,6 +60,9 @@ const JobCard = ({ jobDetails }) => {
                     <Grid item xs={12}>
                         <Typography variant="body2">{jobDetails.jobDetailsFromCompany.substring(0, 150)}...</Typography>
                         <Button onClick={handleOpen}>Show More</Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="body2">{jobDetails.minExp ? `Experience:${jobDetails.minExp} - ${jobDetails.maxExp} years` : ''}</Typography>
                         <Button component="a" href={jobDetails.jdLink} target="_blank" rel="noopener noreferrer">
                             Easy Apply
                         </Button>
