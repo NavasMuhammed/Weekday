@@ -1,54 +1,12 @@
 /* eslint-disable react/prop-types */
-import { Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, CardContent, Grid, Modal, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
-import './card.css';
-import { Box, Modal } from '@mui/material';
 import { formatExperience, getRandomNumber, toTitleCase } from '../../utils/helper';
 import { RandomAvatars } from '../avararProvider/avatars';
-
-// Styled components
-const StyledCard = styled(Card)(({ theme }) => ({
-    marginBottom: theme.spacing(2),
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[2],
-
-    '&:hover': {
-        transform: 'scale(1.01)',
-    },
-    ...(theme.components?.MuiCard?.styleOverrides?.jobCard ?? {})
-}));
+import './card.css';
+import { ApplyButton, DescriptionBoxStyle, PostedOnCard, ReferralButton, StyledCard } from '../../theme/style';
 
 
-const ReferralButton = styled(Button)(({ theme }) => ({
-    ...(theme.components?.MuiButton?.styleOverrides?.referral ?? {}),
-}));
-
-const ApplyButton = styled(Button)(({ theme }) => ({
-    ...(theme.components?.MuiButton?.styleOverrides?.apply ?? {}),
-}));
-
-const PostedOnCard = styled(Card)(({ theme }) => ({
-    ...(theme.components?.MuiTypography?.styleOverrides?.subtitle2 ?? {}),
-    width: 'fit-content',
-    padding: '2px 6px',
-    borderRadius: 10,
-    border: '1px solid #e0e0e0',
-    boxShadow: '0 0 5px #e0e0e0',
-}));
-
-
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 500,
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    p: 4,
-    borderRadius: 8,
-};
 
 const JobCard = ({ jobDetails }) => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -123,7 +81,7 @@ const JobCard = ({ jobDetails }) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <Box sx={DescriptionBoxStyle}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Full Description
                     </Typography>
