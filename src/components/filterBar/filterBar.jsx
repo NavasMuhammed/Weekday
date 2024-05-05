@@ -46,6 +46,7 @@ const FilterBar = () => {
                     options={selectOptions.experience}
                     isClearable={true}
                     onChange={handleChange}
+                    label='Experience'
                 />
                 <InputField onChange={handleChange} name='companyName' label='Search Company Name' />
                 <BasicSelect
@@ -56,6 +57,7 @@ const FilterBar = () => {
                     width="150px"
                     multiSelect={true}
                     isSearchable
+                    label='Location'
                 />
                 <BasicSelect
                     name="remote"
@@ -63,6 +65,7 @@ const FilterBar = () => {
                     isClearable={true}
                     onChange={handleChange}
                     multiSelect={true}
+                    label='Remote'
 
                 />
                 <BasicSelect
@@ -73,6 +76,7 @@ const FilterBar = () => {
                     multiSelect={true}
                     width="150px"
                     isSearchable
+                    label='Tech Stack'
                 />
                 <BasicSelect
                     name="role"
@@ -81,12 +85,14 @@ const FilterBar = () => {
                     onChange={handleChange}
                     multiSelect={true}
                     width="100px"
+                    label='Role'
                 />
                 <BasicSelect
                     name="minimumBasePay"
                     options={selectOptions.miniBasePay}
                     isClearable={true}
                     onChange={handleChange}
+                    label='Minimum Base Pay'
                 />
             </Stack>
         </form>

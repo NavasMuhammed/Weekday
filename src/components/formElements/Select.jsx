@@ -4,13 +4,13 @@ import FormControl from '@mui/material/FormControl';
 // import Select from '@mui/material/Select';
 import Select from 'react-select';
 
-export const BasicSelect = ({ name, options, isClearable, isSearchable = false, onChange, multiSelect, width = 'max-content' }) => {
+export const BasicSelect = ({ name, options, isClearable, isSearchable = false, onChange, multiSelect, width = 'max-content', label }) => {
     return (
         <Box sx={{ width: 'max-content' }}>
             <FormControl fullWidth>
                 <Select
                     className="basic-single"
-                    placeholder={name}
+                    placeholder={label}
                     isClearable={isClearable}
                     isSearchable={isSearchable}
                     isMulti={multiSelect}
