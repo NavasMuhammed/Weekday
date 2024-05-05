@@ -14,7 +14,7 @@ export const theme = createTheme({
     typography: {
         fontFamily: 'Lexend', // Replace '__LexendFont_7838d2, __LexendFont_Fallback_7838d2' with 'Lexend, sans-serif'
         allVariants: {
-            color: 'darkslategray',
+            color: '#808080'
         },
         h6: {
             fontSize: '13px',

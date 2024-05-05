@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { selectOptions } from "../../utils/constants";
-import { BasicSelect } from "../formElements/Select";
+import { BasicSelect } from "../formElements/select";
+import { Stack } from "@mui/material";
+import { InputField } from "../formElements/InputField";
 
 const FilterBar = () => {
     // Initialize state for form fields
@@ -34,15 +36,15 @@ const FilterBar = () => {
     return (
         <form className="filter-bar-container" onSubmit={handleSubmit}>
             {/* Example select field for role */}
-            <BasicSelect
-                name="experience"
-                options={selectOptions.experience}
-                isClearable={true}
-                onChange={handleChange}
-            />
-
-            {/* Add other form fields as needed */}
-
+            <Stack spacing={2} direction='row' flexWrap='wrap'>
+                <BasicSelect
+                    name="experience"
+                    options={selectOptions.experience}
+                    isClearable={true}
+                    onChange={handleChange}
+                />
+                <InputField onChange={handleChange} name='companyName' label='Search Company Name' />
+            </Stack>
             {/* Submit button */}
             <button type="submit">Apply Filters</button>
         </form>

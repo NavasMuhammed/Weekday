@@ -17,6 +17,13 @@ export const BasicSelect = ({ name, options, isClearable, isSearchable, onChange
                     name={name}
                     options={options}
                     onChange={(selectedOption) => onChange(name, selectedOption ? selectedOption.value : '')}
+                    styles={{
+                        control: (provided) => ({
+                            ...provided,
+                            height: '40px',
+                        }),
+
+                    }}
                 />
 
             </FormControl>
