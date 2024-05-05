@@ -5,7 +5,7 @@ import { Stack } from "@mui/material";
 import { InputField } from "../formElements/InputField";
 import { useDispatch } from "react-redux";
 import { setFilters } from "../../redux/reducers/jobsSlice";
-
+import './filterBar.css';
 const FilterBar = () => {
     // Initialize state for form fields
     const [formValues, setFormValues] = useState({

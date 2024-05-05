@@ -4,6 +4,8 @@ import './App.css';
 import { fetchJobs, resetJobs } from './redux/reducers/jobsSlice';
 import JobCard from './components/cards/jobCard';
 import FilterBar from './components/filterBar/filterBar';
+import { CircularProgress, Stack } from '@mui/material';
+import NotFound from './components/noJobsFound';
 function App() {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobs.jobs);
@@ -43,7 +45,16 @@ function App() {
       </div>
       {
         status === 'loading' && (
-          <div className="loader">Loading...</div>
+          <Stack alignItems='center'>
+            <CircularProgress />
+          </Stack>
+        )
+      }
+      {
+        jobs.length === 0 && status === 'succeeded' && (
+          <div className='no-jobs'>
+            <NotFound />
+          </div>
         )
       }
     </main>
