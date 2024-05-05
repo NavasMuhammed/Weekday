@@ -54,8 +54,7 @@ export const selectOptions = {
     ],
     remote: [
         { value: 'remote', label: 'Remote' },
-        { value: 'onsite', label: 'Onsite' },
-        { value: 'hybrid', label: 'Hybrid' }
+        { value: '', label: 'Onsite' },
     ],
     techStack: [
         { value: 'react', label: 'React' },
@@ -100,20 +99,20 @@ export const selectOptions = {
         { value: 'backend', label: 'Backend' },
         { value: 'android', label: 'Android' },
         { value: 'ios', label: 'IOS' },
-        { value: 'techLead', label: 'Tech Lead' },
+        { value: 'tech lead', label: 'Tech Lead' },
     ],
     miniBasePay: [
-        { value: '0L', label: '0L' },
-        { value: '1L', label: '1L' },
-        { value: '2L', label: '2L' },
-        { value: '3L', label: '3L' },
-        { value: '4L', label: '4L' },
-        { value: '5L', label: '5L' },
-        { value: '6L', label: '6L' },
-        { value: '7L', label: '7L' },
-        { value: '8L', label: '8L' },
-        { value: '9L', label: '9L' },
-        { value: '10L', label: '10L' }
+        { value: 0, label: '0L' },
+        { value: 1, label: '1L' },
+        { value: 2, label: '2L' },
+        { value: 3, label: '3L' },
+        { value: 4, label: '4L' },
+        { value: 5, label: '5L' },
+        { value: 6, label: '6L' },
+        { value: 7, label: '7L' },
+        { value: 8, label: '8L' },
+        { value: 9, label: '9L' },
+        { value: 10, label: '10L' }
     ]
 
 }
