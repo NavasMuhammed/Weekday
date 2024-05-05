@@ -116,3 +116,21 @@ export const selectOptions = {
     ]
 
 }
+
+
+export const jobSliceInitialState = {
+    jobs: [],
+    status: 'idle',
+    error: null,
+    page: 0,
+    filters: {
+        location: [],
+        experience: null,
+        remote: [],
+        techStack: [],
+        role: [],
+        minBasePay: null,
+        companyName: '',
+    },
+    noMoreJobs: false,
+};
