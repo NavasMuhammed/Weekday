@@ -1,28 +1,37 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import { fetchJobs } from './redux/reducers/jobsSlice';
+import { fetchJobs, resetJobs } from './redux/reducers/jobsSlice';
 import JobCard from './components/cards/jobCard';
 import FilterBar from './components/filterBar/filterBar';
 function App() {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobs.jobs);
   const status = useSelector((state) => state.jobs.status);
+  const filters = useSelector((state) => state.jobs.filters);
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
+
 
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchJobs());
-    }
+    // Reset jobs list and fetch new jobs whenever filters change
+    dispatch(resetJobs());
+    setIsLoading(true);
+    dispatch(fetchJobs()).then(() => setIsLoading(false));
+  }, [dispatch, filters]);
+
+
+  useEffect(() => {
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop < document.documentElement.offsetHeight - 500 ||
-        status === 'loading'
+        status === 'loading' || isLoading
       ) return;
-      dispatch(fetchJobs());
+      setIsLoading(true);
+      dispatch(fetchJobs()).then(() => setIsLoading(false));
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [dispatch, status]);
+  }, [dispatch, status, isLoading]);
 
   return (
     <main className='app'>

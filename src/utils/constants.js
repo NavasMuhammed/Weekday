@@ -12,7 +12,7 @@ export const selectOptions = {
         { value: 10, label: 10 },
     ],
     location: [
-        { value: 'delhi', label: 'Delhi' },
+        { value: 'delhi ncr', label: 'Delhi' },
         { value: 'mumbai', label: 'Mumbai' },
         { value: 'bangalore', label: 'Bangalore' },
         { value: 'hyderabad', label: 'Hyderabad' },

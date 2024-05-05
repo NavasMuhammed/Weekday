@@ -3,6 +3,8 @@ import { selectOptions } from "../../utils/constants";
 import { BasicSelect } from "../formElements/select";
 import { Stack } from "@mui/material";
 import { InputField } from "../formElements/InputField";
+import { useDispatch } from "react-redux";
+import { setFilters } from "../../redux/reducers/jobsSlice";
 
 const FilterBar = () => {
     // Initialize state for form fields
@@ -16,6 +18,7 @@ const FilterBar = () => {
         minBasePay: {},
     });
 
+    const dispatch = useDispatch();
 
 
     // Handle changing form fields
@@ -25,6 +28,7 @@ const FilterBar = () => {
             [fieldName]: selectedValue,
         }));
         console.log('Form Values:', { ...formValues, [fieldName]: selectedValue });
+        dispatch(setFilters({ ...formValues, [fieldName]: selectedValue }));
     };
 
     // Handle form submission
@@ -36,7 +40,7 @@ const FilterBar = () => {
     return (
         <form className="filter-bar-container" onSubmit={handleSubmit}>
             {/* Example select field for role */}
-            <Stack rowGap={2} gap={2} direction='row' flexWrap='wrap'>
+            <Stack rowGap={2} gap={1} direction='row' flexWrap='wrap'>
                 <BasicSelect
                     name="experience"
                     options={selectOptions.experience}
