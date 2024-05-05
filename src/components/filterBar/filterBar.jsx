@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { selectOptions } from "../../utils/constants";
-import { BasicSelect } from "../formElements/select";
 import { Stack } from "@mui/material";
 import { InputField } from "../formElements/InputField";
+
 import { useDispatch } from "react-redux";
 import { setFilters } from "../../redux/reducers/jobsSlice";
 import './filterBar.css';
+import { BasicSelect } from "../formElements/selectComponent";
 const FilterBar = () => {
     // Initialize state for form fields
     const [formValues, setFormValues] = useState({
