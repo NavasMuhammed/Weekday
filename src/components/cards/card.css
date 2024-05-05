@@ -8,3 +8,7 @@
     cursor: pointer;
     text-decoration: none;
 }
+
+.job-card:hover {
+    transform: scale(1.01);
+}

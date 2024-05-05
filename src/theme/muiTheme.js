@@ -1,11 +1,11 @@
 import { createTheme, keyframes } from '@mui/material';
 const slideUp = keyframes`
   from {
-    transform: translateY(100%);
     opacity: 0;
+    bottom: -100px;
   }
   to {
-    transform: translateY(0);
+    bottom: 0;
     opacity: 1;
   }
 `;
@@ -35,6 +35,18 @@ export const theme = createTheme({
             fontSize: '0.875rem',
             lineHeight: 1.5,
             textAlign: 'left',
+        },
+        h2: {
+            fontSize: '1rem',
+            fontWeight: 400,
+            textAlign: 'left',
+            color: '#000',
+        },
+        h3: {
+            fontSize: '13px',
+            fontWeight: 600,
+            textAlign: 'left',
+            color: '#000',
         },
     },
     components: {
@@ -79,7 +91,9 @@ export const theme = createTheme({
                     minHeight: 275,
                     borderRadius: 20,
                     transition: 'all 0.3s',
-                    animation: `${slideUp} 0.3s ease-out forwards`,
+                    animation: `${slideUp} 0.5s ease-out forwards`,
+                    position: 'relative',
+                    padding: '0 3px',
                 },
             },
         },
