@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import { fetchJobs } from './redux/reducers/jobsSlice';
 import JobCard from './components/cards/jobCard';
+import FilterBar from './components/filterBar/filterBar';
 function App() {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobs.jobs);
@@ -24,7 +25,8 @@ function App() {
   }, [dispatch, status]);
 
   return (
-    <main>
+    <main className='app'>
+      <FilterBar />
       <div className='job-card-container'>
         {jobs.map((job) => (
           <JobCard key={job.jdUid} jobDetails={job} className='job-card' />

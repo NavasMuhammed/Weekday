@@ -1,10 +1,7 @@
 :root {
   font-family: __LexendFont_7838d2, __LexendFont_Fallback_7838d2;
-
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
   background-color: rgba(255, 255, 255, 1);
   color: #242424;
 

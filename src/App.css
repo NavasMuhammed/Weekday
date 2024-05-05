@@ -5,6 +5,12 @@
 }
 
 
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 
 .job-card-container {
   display: flex;
