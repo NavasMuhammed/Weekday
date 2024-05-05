@@ -64,7 +64,6 @@ const FilterBar = () => {
                     options={selectOptions.remote}
                     isClearable={true}
                     onChange={handleChange}
-                    multiSelect={true}
                     label='Remote'
 
                 />
