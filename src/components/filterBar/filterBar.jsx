@@ -10,10 +10,10 @@ const FilterBar = () => {
         experience: {},
         companyName: '',
         location: [],
-        remote: '',
-        techStack: '',
-        role: '',
-        minBasePay: '',
+        remote: [],
+        techStack: [],
+        role: [],
+        minBasePay: {},
     });
 
 
@@ -36,7 +36,7 @@ const FilterBar = () => {
     return (
         <form className="filter-bar-container" onSubmit={handleSubmit}>
             {/* Example select field for role */}
-            <Stack spacing={2} direction='row' flexWrap='wrap'>
+            <Stack rowGap={2} gap={2} direction='row' flexWrap='wrap'>
                 <BasicSelect
                     name="experience"
                     options={selectOptions.experience}
@@ -52,9 +52,36 @@ const FilterBar = () => {
                     width="150px"
                     multiSelect={true}
                 />
+                <BasicSelect
+                    name="remote"
+                    options={selectOptions.remote}
+                    isClearable={true}
+                    onChange={handleChange}
+                    multiSelect={true}
+                />
+                <BasicSelect
+                    name="techStack"
+                    options={selectOptions.techStack}
+                    isClearable={true}
+                    onChange={handleChange}
+                    multiSelect={true}
+                    width="150px"
+                />
+                <BasicSelect
+                    name="role"
+                    options={selectOptions.role}
+                    isClearable={true}
+                    onChange={handleChange}
+                    multiSelect={true}
+                    width="100px"
+                />
+                <BasicSelect
+                    name="minimumBasePay"
+                    options={selectOptions.miniBasePay}
+                    isClearable={true}
+                    onChange={handleChange}
+                />
             </Stack>
-            {/* Submit button */}
-            <button type="submit">Apply Filters</button>
         </form>
     );
 };

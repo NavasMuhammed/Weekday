@@ -22,6 +22,11 @@ export const BasicSelect = ({ name, options, isClearable, isSearchable, onChange
                             ...provided,
                             height: '40px',
                             minWidth: width,
+                            textAlign: 'left',
+                        }),
+                        menuList: (provided) => ({
+                            ...provided,
+                            textAlign: 'left',
                         }),
 
                     }}
