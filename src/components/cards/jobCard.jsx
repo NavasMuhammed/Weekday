@@ -5,19 +5,22 @@ import { useState } from 'react';
 import './card.css';
 
 import { Box, Modal } from '@mui/material';
+import { formatExperience, toTitleCase } from '../../utils/helper';
 
 // Styled components
 const StyledCard = styled(Card)(({ theme }) => ({
     maxWidth: 345,
     marginBottom: theme.spacing(2),
     backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[1],
+    boxShadow: theme.shadows[2],
     '&:hover': {
         boxShadow: theme.shadows[4],
+        transform: 'scale(1.02)',
     },
     minWidth: 275,
     minHeight: 275,
     borderRadius: 20,
+    transition: 'all 0.3s',
 }));
 
 
@@ -45,24 +48,34 @@ const JobCard = ({ jobDetails }) => {
             <CardContent>
                 <Grid container spacing={2}>
                     <Grid item xs={2}>
+                        {/* <Stack justifyContent="center"
+                            alignItems="center"
+                            sx={{ width: '100%', height: '100%' }}
+                        > */}
                         <img
                             src={jobDetails.logoUrl}
                             alt={`${jobDetails.companyName} Logo`}
-                            style={{ width: '100%', height: 'auto', borderRadius: '50%' }}
+                            style={{ width: '100%', height: 'auto' }}
                         />
+                        {/* </Stack> */}
                     </Grid>
                     <Grid item xs={10} container direction="column" justifyContent="space-between">
                         <Typography variant="h6">{jobDetails.companyName}</Typography>
-                        <Typography variant="subtitle1">{jobDetails.jobRole}</Typography>
-                        <Typography variant="body2">Location: {jobDetails.location}</Typography>
-                        <Typography variant="body2">Estimated Salary: {jobDetails.minJdSalary ? `$${jobDetails.minJdSalary} - ` : ''}{jobDetails.maxJdSalary ? `$${jobDetails.maxJdSalary}` : 'Negotiable'}</Typography>
+                        <Typography variant="subtitle1">{toTitleCase(jobDetails.jobRole)}</Typography>
+                        <Typography variant="subtitle2">{toTitleCase(jobDetails.location)}</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="body2">{jobDetails.jobDetailsFromCompany.substring(0, 150)}...</Typography>
-                        <Button onClick={handleOpen}>Show More</Button>
+                        <Typography variant="body2">Estimated Salary: {jobDetails.minJdSalary ? `$${jobDetails.minJdSalary} - ` : ''}{jobDetails.maxJdSalary ? `$${jobDetails.maxJdSalary}` : ''}✅</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="body2">{jobDetails.minExp ? `Experience:${jobDetails.minExp} - ${jobDetails.maxExp} years` : ''}</Typography>
+                        <Typography className='job-description' variant="body2">{jobDetails.jobDetailsFromCompany.substring(0, 650)}...</Typography>
+                        <a className='show-description-btn' onClick={handleOpen}>Show more</a>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h6">Minimum Experience</Typography>
+                        <Typography variant="subtitle1">
+                            {formatExperience(jobDetails.minExp, jobDetails.maxExp)}
+                        </Typography>
                         <Button component="a" href={jobDetails.jdLink} target="_blank" rel="noopener noreferrer">
                             Easy Apply
                         </Button>
