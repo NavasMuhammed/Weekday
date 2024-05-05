@@ -55,6 +55,7 @@ const FilterBar = () => {
                     onChange={handleChange}
                     width="150px"
                     multiSelect={true}
+                    isSearchable
                 />
                 <BasicSelect
                     name="remote"
@@ -62,6 +63,7 @@ const FilterBar = () => {
                     isClearable={true}
                     onChange={handleChange}
                     multiSelect={true}
+
                 />
                 <BasicSelect
                     name="techStack"
@@ -70,6 +72,7 @@ const FilterBar = () => {
                     onChange={handleChange}
                     multiSelect={true}
                     width="150px"
+                    isSearchable
                 />
                 <BasicSelect
                     name="role"
