@@ -14,7 +14,7 @@ function App() {
     }
     const handleScroll = () => {
       if (
-        window.innerHeight + document.documentElement.scrollTop < document.documentElement.offsetHeight - 1 ||
+        window.innerHeight + document.documentElement.scrollTop < document.documentElement.offsetHeight - 500 ||
         status === 'loading'
       ) return;
       dispatch(fetchJobs());

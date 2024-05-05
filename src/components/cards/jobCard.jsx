@@ -1,28 +1,32 @@
 /* eslint-disable react/prop-types */
-import { Button, Card, CardContent, Grid, Typography } from '@mui/material';
+import { Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 import './card.css';
-
 import { Box, Modal } from '@mui/material';
 import { formatExperience, toTitleCase } from '../../utils/helper';
+import { RandomAvatars } from '../avararProvider/avatars';
 
 // Styled components
 const StyledCard = styled(Card)(({ theme }) => ({
-    maxWidth: 345,
     marginBottom: theme.spacing(2),
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[2],
     '&:hover': {
         boxShadow: theme.shadows[4],
-        transform: 'scale(1.02)',
+        transform: 'scale(1.01)',
     },
-    minWidth: 275,
-    minHeight: 275,
-    borderRadius: 20,
-    transition: 'all 0.3s',
+    ...(theme.components?.MuiCard?.styleOverrides?.jobCard ?? {})
 }));
 
+
+const ReferralButton = styled(Button)(({ theme }) => ({
+    ...(theme.components?.MuiButton?.styleOverrides?.referral ?? {}),
+}));
+
+const ApplyButton = styled(Button)(({ theme }) => ({
+    ...(theme.components?.MuiButton?.styleOverrides?.apply ?? {}),
+}));
 
 
 const style = {
@@ -45,7 +49,7 @@ const JobCard = ({ jobDetails }) => {
 
     return (
         <StyledCard>
-            <CardContent>
+            <CardContent sx={{ marginBottom: -2 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={2}>
                         {/* <Stack justifyContent="center"
@@ -65,20 +69,32 @@ const JobCard = ({ jobDetails }) => {
                         <Typography variant="subtitle2">{toTitleCase(jobDetails.location)}</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="body2">Estimated Salary: {jobDetails.minJdSalary ? `$${jobDetails.minJdSalary} - ` : ''}{jobDetails.maxJdSalary ? `$${jobDetails.maxJdSalary}` : ''}✅</Typography>
+                        <Typography variant="body2">Estimated Salary: ₹{jobDetails.minJdSalary ? `${jobDetails.minJdSalary} - ` : ''}{jobDetails.maxJdSalary ? `${jobDetails.maxJdSalary}` : ''} LPA✅</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography className='job-description' variant="body2">{jobDetails.jobDetailsFromCompany.substring(0, 650)}...</Typography>
+                        <Typography className='job-description' variant="body2">{jobDetails.jobDetailsFromCompany.substring(0, 550)}...</Typography>
                         <a className='show-description-btn' onClick={handleOpen}>Show more</a>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="h6">Minimum Experience</Typography>
-                        <Typography variant="subtitle1">
-                            {formatExperience(jobDetails.minExp, jobDetails.maxExp)}
-                        </Typography>
-                        <Button component="a" href={jobDetails.jdLink} target="_blank" rel="noopener noreferrer">
-                            Easy Apply
-                        </Button>
+                        <Stack spacing={1}>
+                            <Stack>
+                                <Typography variant="h6">Minimum Experience</Typography>
+                                <Typography variant="subtitle1">
+                                    {formatExperience(jobDetails.minExp, jobDetails.maxExp)}
+                                </Typography>
+                            </Stack>
+                            <Stack spacing={1}>
+                                <ApplyButton variant='apply' href={jobDetails.jdLink} target="_blank" rel="noopener noreferrer">
+                                    ⚡ Easy Apply
+                                </ApplyButton>
+                                <ReferralButton variant='referal' href={jobDetails.jdLink} target="_blank" rel="noopener noreferrer">
+                                    <Stack alignItems='center' direction='row' gap={2} spacing={2}>
+                                        <RandomAvatars count={2} />
+                                        Unlock referral asks
+                                    </Stack>
+                                </ReferralButton>
+                            </Stack>
+                        </Stack>
                     </Grid>
                 </Grid>
             </CardContent>
