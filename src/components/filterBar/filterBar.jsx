@@ -7,9 +7,9 @@ import { InputField } from "../formElements/InputField";
 const FilterBar = () => {
     // Initialize state for form fields
     const [formValues, setFormValues] = useState({
-        experience: '',
+        experience: {},
         companyName: '',
-        location: '',
+        location: [],
         remote: '',
         techStack: '',
         role: '',
@@ -44,6 +44,14 @@ const FilterBar = () => {
                     onChange={handleChange}
                 />
                 <InputField onChange={handleChange} name='companyName' label='Search Company Name' />
+                <BasicSelect
+                    name="location"
+                    options={selectOptions.location}
+                    isClearable={true}
+                    onChange={handleChange}
+                    width="150px"
+                    multiSelect={true}
+                />
             </Stack>
             {/* Submit button */}
             <button type="submit">Apply Filters</button>
