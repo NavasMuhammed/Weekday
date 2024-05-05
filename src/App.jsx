@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import { fetchJobs, resetJobs } from './redux/reducers/jobsSlice';
 import JobCard from './components/cards/jobCard';
 import FilterBar from './components/filterBar/filterBar';
 import { CircularProgress, Stack } from '@mui/material';
 import NotFound from './components/noJobsFound';
+import { resetJobs } from './redux/reducers/jobsSlice';
+import { fetchJobs } from './redux/reducers/fetchJob';
 function App() {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobs.jobs);

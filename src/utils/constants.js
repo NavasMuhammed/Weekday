@@ -102,17 +102,16 @@ export const selectOptions = {
         { value: 'tech lead', label: 'Tech Lead' },
     ],
     miniBasePay: [
-        { value: 0, label: '0L' },
-        { value: 1, label: '1L' },
-        { value: 2, label: '2L' },
-        { value: 3, label: '3L' },
-        { value: 4, label: '4L' },
-        { value: 5, label: '5L' },
-        { value: 6, label: '6L' },
-        { value: 7, label: '7L' },
-        { value: 8, label: '8L' },
-        { value: 9, label: '9L' },
-        { value: 10, label: '10L' }
+        { value: 10, label: '10L' },
+        { value: 20, label: '20L' },
+        { value: 30, label: '30L' },
+        { value: 40, label: '40L' },
+        { value: 50, label: '50L' },
+        { value: 60, label: '60L' },
+        { value: 70, label: '70L' },
+        { value: 80, label: '80L' },
+        { value: 90, label: '90L' },
+        { value: 100, label: '100L' }
     ]
 
 }
