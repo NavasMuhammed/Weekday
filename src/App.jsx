@@ -45,7 +45,7 @@ function App() {
       </div>
       {
         status === 'loading' && (
-          <Stack alignItems='center' height='80vh'>
+          <Stack alignItems='center' height='100vh'>
             <CircularProgress />
           </Stack>
         )

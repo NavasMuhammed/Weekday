@@ -16,14 +16,17 @@ const initialState = {
         minBasePay: null,
         companyName: '',
     },
+    noMoreJobs: false,
 };
 
-export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async (_, { getState }) => {
+export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async (_, { getState, dispatch }) => {
     let jobsList = [];
     let hasMore = true;
     let currentPage = getState().jobs.page;
-    const { filters } = getState().jobs;
-
+    const { filters, noMoreJobs } = getState().jobs;
+    if (noMoreJobs) {
+        return { jobsList: [], page: currentPage, noMoreJobs: true };
+    }
     while (jobsList.length < 10 && hasMore) {
         const response = await fetch(BASE_URL, {
             method: 'POST',
@@ -35,6 +38,7 @@ export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async (_, { getState
         const data = await response.json();
         if (data.jdList.length === 0) {
             hasMore = false; // No more jobs to fetch
+            dispatch(jobsSlice.actions.setNoMoreJobs(true));
         } else {
             let filteredJobs = data.jdList;
             // Apply filters if they are not in their initial state
@@ -94,7 +98,7 @@ export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async (_, { getState
         jobsList = jobsList.slice(0, 10);
     }
 
-    return { jobsList, page: currentPage }; // Adjust page count for state
+    return { jobsList, page: currentPage, noMoreJobs: !hasMore || jobsList.length === 0 }; // Adjust page count for state
 });
 
 const jobsSlice = createSlice({
@@ -114,6 +118,10 @@ const jobsSlice = createSlice({
         resetJobs: (state) => {
             state.jobs = [];
             state.page = 0; // Reset the page state
+            state.noMoreJobs = false;
+        },
+        setNoMoreJobs: (state, action) => {
+            state.noMoreJobs = action.payload;
         },
     },
     extraReducers(builder) {
@@ -127,6 +135,7 @@ const jobsSlice = createSlice({
                 state.jobs = [...state.jobs, ...action.payload.jobsList];
                 // Update the page state with the last page fetched
                 state.page = action.payload.page;
+                state.noMoreJobs = action.payload.noMoreJobs;
             })
             .addCase(fetchJobs.rejected, (state, action) => {
                 state.status = 'failed';
@@ -134,7 +143,7 @@ const jobsSlice = createSlice({
             });
     },
 });
-export const { resetJobs, setFilters, resetFilters } = jobsSlice.actions;
+export const { resetJobs, setFilters, resetFilters, setNoMoreJobs } = jobsSlice.actions;
 
 export const selectFilters = (state) => state.jobs.filters;
 
